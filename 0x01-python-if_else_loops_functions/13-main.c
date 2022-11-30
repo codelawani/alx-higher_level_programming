@@ -28,6 +28,12 @@ int main(void)
     insert_node(&head, 27);
 
     print_listint(head);
+    printf("-----------------\n");
+    insert_node(&head, -1);
+    print_listint(head);
+    printf("-----------------\n");
+    insert_node(&head, 2000);
+    print_listint(head);
 
     free_listint(head);
 
