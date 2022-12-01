@@ -1,1 +1,1 @@
-__import__("0-add")
+__import__("101-easy_print")
