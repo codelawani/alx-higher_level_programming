@@ -31,7 +31,9 @@ int is_palindrome(listint_t **head)
 	{
 		first++, last--;
 		if (first >= last)
+			free(listnums);
 			return (1);
 	}
+	free(listnums);
 	return (0);
 }
