@@ -1,6 +1,13 @@
 #include "lists.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/**
+ * is_palindrome - checks if a list is palindrome
+ * @head: pointer to address of head of node
+ * Return: 1 if palindrome or 0 otherwise
+ */
+
 int is_palindrome(listint_t **head)
 {
 	listint_t *current;
