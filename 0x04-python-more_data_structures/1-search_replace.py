@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+def search_replace(my_list, search, replace):
+    new_l = my_list[:]
+    for i in range(len(new_l)):
+        if new_l[i] == 2:
+            new_l[i] = 89
+    return new_l
