@@ -39,7 +39,7 @@ int is_palindrome(listint_t **head)
 		fast = fast->next;
 		size++;
 	}
-	fast = slow->next;
+	mid = fast = slow->next;
 	for (i = 1; i < size / 2; i++)
 	{
 		slow = slow->next;
@@ -47,12 +47,15 @@ int is_palindrome(listint_t **head)
 	}
 	if (size % 2 != 0)
 		fast = fast->next;
-	mid = fast = revlist(fast);
+	fast = revlist(fast);
 	slow = *head;
 	while (fast)
 	{
 		if (slow->n != fast->n)
+		{
+			revlist(mid);
 			return (0);
+		}
 		slow = slow->next;
 		fast = fast->next;
 	}

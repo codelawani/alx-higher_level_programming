@@ -36,7 +36,7 @@ int is_palindrome(listint_t **head)
 	return (1);
 }
 
-/* int is_palindrome(listint_t **head)
+int is_palindrome(listint_t **head)
 {
     listint_t *node = *head, *prev = NULL;
     int size = 0;
@@ -70,4 +70,3 @@ int is_palindrome(listint_t **head)
     }
     return (1);
 }
- */
