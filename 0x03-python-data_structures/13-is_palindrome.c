@@ -1,41 +1,61 @@
 #include "lists.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 /**
- * is_palindrome - checks if a list is palindrome
- * @head: pointer to address of head of node
- * Return: 1 if palindrome or 0 otherwise
+ * revlist - reverses a list
+ * @node: pointer to middle of list
+ * Return: pointer to reversed list
+ */
+
+listint_t *revlist(listint_t *node)
+{
+	listint_t *next, *prev = NULL;
+
+	while (node->next)
+	{
+		next = node->next;
+		node->next = prev;
+		prev = node;
+		node = next;
+	}
+	node->next = prev;
+	return (node);
+}
+/**
+ * is_palindrome - checks if a linked list is palindrome
+ * @head: pointer to address of head node
+ * Return: 1 if it is palindrome or 0 otherwise
  */
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *current;
-	int *listnums, first = 0, last, listlen = 0;
+	listint_t *mid, *slow = *head;
+	listint_t *fast = *head;
+	int i, size = 0;
 
-	if (*head == NULL)
+	if (slow == NULL || slow->next == NULL)
 		return (1);
-	current = *head;
-	listnums = malloc(sizeof(int));
-	if (listnums == NULL)
-		return (0);
-	while (current != NULL)
+	while (fast != NULL)
 	{
-		listnums[listlen] = current->n;
-		current = current->next;
-		listlen++;
-		listnums = realloc(listnums, (1 + listlen) * sizeof(int));
+		fast = fast->next;
+		size++;
 	}
-	last = listlen - 1;
-	while (listnums[first] == listnums[last])
+	fast = slow->next;
+	for (i = 1; i < size / 2; i++)
 	{
-		first++, last--;
-		if (first >= last)
-		{
-			free(listnums);
-			return (1);
-		}
+		slow = slow->next;
+		fast = fast->next;
 	}
-	free(listnums);
-	return (0);
+	if (size % 2 != 0)
+		fast = fast->next;
+	mid = fast = revlist(fast);
+	slow = *head;
+	while (fast)
+	{
+		if (slow->n != fast->n)
+			return (0);
+		slow = slow->next;
+		fast = fast->next;
+	}
+	revlist(mid);
+	return (1);
 }

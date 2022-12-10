@@ -35,3 +35,39 @@ int is_palindrome(listint_t **head)
 	}
 	return (1);
 }
+
+/* int is_palindrome(listint_t **head)
+{
+    listint_t *node = *head, *prev = NULL;
+    int size = 0;
+
+    if (node == NULL || node->next == NULL)
+        return (1);
+
+    while (node)
+    {
+        size++;
+        node = node->next;
+    }
+    node = *head;
+
+    for (int i = 0; i < size / 2; i++)
+    {
+        listint_t *next = node->next;
+        node->next = prev;
+        prev = node;
+        node = next;
+    }
+    if (size % 2 == 1)
+        node = node->next;
+
+    while (node)
+    {
+        if (node->n != prev->n)
+            return (0);
+        node = node->next;
+        prev = prev->next;
+    }
+    return (1);
+}
+ */
