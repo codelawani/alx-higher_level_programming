@@ -1,0 +1,124 @@
+===============================
+How to use 0-add_integer module
+===============================
+
+This module defines an integer addition function ``add_integer(a, b=98)``.
+
+Usage
+=====
+
+The ``0-add_integer`` module takes two integers or floats as arguments and returns their sum. For numbers, the sum returned is equivalent to using the ``+`` operator on the nymbers.
+
+Importing function
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Examples:
+
+Case two positive integers:
+	>>> add_integer(2, 2)
+	4
+
+Case positive and negative integer:
+	>>> add_integer(3, -1)
+	2
+
+"The function also works with floats(nb: floats are casted first as integers before getting added)"
+
+Case two floats:
+	>>> add_integer(9.9, 1.6)
+	10
+
+Case negative floats:
+	>>> add_integer(-9.9, -1.6)
+	-10
+
+Case float and negative integer:
+	>>> add_integer(99.9, -98)
+	1
+
+"The second argument is optional by default(default value is 98)"
+	>>> add_integer(2.8)
+	100
+
+==========
+Non-numbers
+==========
+"The function raises a ``TypeError`` when a non-number(non-int or non-float) is passed"
+Case a = integer and b = string:
+	>>> add_integer(90, "fpl")
+	Traceback (most recent call last):
+		 ...
+	TypeError: b must be an integer
+
+Case b = integer and a = string:
+	>>> add_integer("fpl", 90)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+Case a = None:
+	>>> add_integer(None)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+Case b = None:
+	>>> add_integer(7, None)
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
+
+Case integer and list:
+	>>> add_integer(6, [6, 7, 8])
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
+
+Case tuple and integer:
+	>>> add_integer((3, 4), 5)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+"If both arguments are non-ints or non-floats, ``TypeError`` is only raised for the first argument"
+	>>> add_integer((3, 4), "Im nice:)")
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+Case undefined variable and integer:
+	>>> add_integer(xyz, 8)
+	Traceback (most recent call last):
+		...
+	NameError: name 'xyz' is not defined
+
+"The function will fail if infinity or Nan is provided. It will also fail if no argument is passed"
+Case Nan 1:
+	>>> add_integer(7, float('nan'))
+	Traceback (most recent call last):
+		...
+	ValueError: cannot convert float NaN to integer
+
+Case Nan 2:
+	>>> add_integer(float('nan'))
+	Traceback (most recent call last):
+		...
+	ValueError: cannot convert float NaN to integer
+
+Case no arguments passed:
+	>>> add_integer()
+	Traceback (most recent call last):
+		...
+	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Case Overflow 1(a = float('inf')):
+	>>> add_integer(float('inf'))
+	Traceback (most recent call last):
+		...
+	OverflowError: cannot convert float infinity to integer
+
+Case Overflow 2(a = float('inf') and b = float('-inf')):
+	>>> add_integer(float('inf'), float('-inf'))
+	Traceback (most recent call last):
+		...
+	OverflowError: cannot convert float infinity to integer
