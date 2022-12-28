@@ -1,0 +1,7 @@
+=========================================
+How to use ``2-matrix_divided.py`` module
+=========================================
+
+This module defines a matrix division function ``def matrix_divided(matrix, div)``
+import function
+matrix_divided = __import__('2-matrix_divided').matrix_divided
