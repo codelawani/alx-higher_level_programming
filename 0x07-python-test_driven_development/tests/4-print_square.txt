@@ -1,0 +1,46 @@
+========================================
+How to use the ``4-print_square`` module
+========================================
+
+::This module contains a function that prints a square using the character ``#``::
+
+=====
+Usage
+=====
+
+::The function ``def print_square(size)`` takes an integer and prints a square based on this integer ``size``. It uses the character ``#`` to achieve this::
+
+Example:
+
+Importing function
+	>>> print_square = __import__('4-print_square').print_square
+	>>> print_square(3)
+	###
+	###
+	###
+
+	>>> print_square(1)
+	#
+
+	"""When 0 is passed, nothing is printed"""
+	>>> print_square(0)
+
+:::The function raises a TypeError when a non-integer is passed::
+
+	>>> print_square(0.0)
+	Traceback (most recent call last):
+		...
+	TypeError: size must be an integer
+
+	>>> print_square((5, 5))
+	Traceback (most recent call last):
+		...
+	TypeError: size must be an integer
+
+::The function raises a ValueError when a negative integer is passed::
+
+	>>> print_square(-8)
+	Traceback (most recent call last):
+		...
+	ValueError: size must be >= 0
+

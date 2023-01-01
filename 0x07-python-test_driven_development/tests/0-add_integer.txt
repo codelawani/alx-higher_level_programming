@@ -7,7 +7,7 @@ This module defines an integer addition function ``add_integer(a, b=98)``.
 Usage
 =====
 
-The ``0-add_integer`` module takes two integers or floats as arguments and returns their sum. For numbers, the sum returned is equivalent to using the ``+`` operator on the nymbers.
+The ``0-add_integer`` module takes two integers or floats as arguments and returns their sum. For numbers, the sum returned is equivalent to using the ``+`` operator on the numbers.
 
 Importing function
 	>>> add_integer = __import__('0-add_integer').add_integer
@@ -21,6 +21,21 @@ Case two positive integers:
 Case positive and negative integer:
 	>>> add_integer(3, -1)
 	2
+
+Case large numbers:
+	>>> add_integer(1000000000000000000, 9999999999999999999999)
+	10000999999999999999999
+
+Case very large numbers:
+	>>> add_integer(1e100, 1e100)
+	20000000000000000318057822195198360936721617127890562779562655115495677544340762121626939971713630208
+
+	>>> add_integer(-1e100, -1e100)
+	-20000000000000000318057822195198360936721617127890562779562655115495677544340762121626939971713630208
+
+Case very small numbers:
+	>>> add_integer(-1e-100, -1e-100)
+	0
 
 "The function also works with floats(nb: floats are casted first as integers before getting added)"
 

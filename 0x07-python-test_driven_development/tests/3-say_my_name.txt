@@ -1,0 +1,56 @@
+===================================
+How to use ``3-say_my_name`` module
+===================================
+
+This module defines a function that prints a full name.
+
+=====
+Usage
+=====
+
+::The function ``say_my_name(first_name, last_name="")`` accepts two strings and prints them to standard output::
+
+Importing function
+	>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Example:
+
+	>>> first_name = 'Nico'
+	>>> last_name = 'Lawani'
+	>>> say_my_name(first_name, last_name)
+	My name is Nico Lawani
+
+	>>> say_my_name('N', 'L')
+	My name is N L
+
+	>>> say_my_name("sdhgjhsgfjsdgfsdfdhgdjgdgsdfgjfgghcfhcjcgjscgjcdfghfcdghfsd", "gvsdgcasfgcdgsfdfashcdgsgdfasfugYDAUFfdffffffffffffff")
+	My name is sdhgjhsgfjsdgfsdfdhgdjgdgsdfgjfgghcfhcjcgjscgjcdfghfcdghfsd gvsdgcasfgcdgsfdfashcdgsgdfasfugYDAUFfdffffffffffffff
+
+	>>> say_my_name("")
+	My name is  
+
+	"""note double trailing space in above example"""
+
+The function has an empty string as ``last_name`` by default. So it can also be used this way:
+	>>> say_my_name("nic")
+	My name is nic 
+
+::The function will raise a TypeError if a non-string is passed::
+
+Examples:
+	>>> say_my_name("nic", None)
+	Traceback (most recent call last):
+		...
+	TypeError: last_name must be a string
+
+	>>> say_my_name(None)
+	Traceback (most recent call last):
+		...
+	TypeError: first_name must be a string
+
+NB: If both arguments passed are non-strings, TypeError is only raised for the first argument.
+	>>> say_my_name(9, 9)
+	Traceback (most recent call last):
+		...
+	TypeError: first_name must be a string
+

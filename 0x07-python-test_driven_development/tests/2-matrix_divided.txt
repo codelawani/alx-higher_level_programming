@@ -3,5 +3,86 @@ How to use ``2-matrix_divided.py`` module
 =========================================
 
 This module defines a matrix division function ``def matrix_divided(matrix, div)``
-import function
-matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Usage
+=====
+
+::The ``2-matrix_divided.py`` module takes  a matrix(list of lists) of integers or floats and a number(integer or float) and returns a new matrix equal to the division of the elements of the matrix passed and the number passed. For numbers, the result is equivalent to using the ``/`` operator on the numbers::
+
+::Importing function::
+	>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+::The function accepts a matrix(list of lists) of integers or floats and a number(integer or float) and returns a new matrix equal to the division of the elements of the matrix passed and the number passed::
+
+Example:
+NB: We will be using example matrix below for multiple examples
+	>>> matrix = [
+	...     [1, 2, 3],
+	...     [4, 5, 6]
+	... ]
+	>>> matrix_divided(matrix, 3)
+	[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+	>>> matrix_divided([[1, 2, 3], [4, 5, 6]], -3)
+	[[-0.33, -0.67, -1.0], [-1.33, -1.67, -2.0]]
+
+::The function will also accept floats::
+
+Example:
+	>>> matrix_divided([[1.6, 2.6, 3.6], [4.6, 5.6, 6.6]], -3)
+	[[-0.53, -0.87, -1.2], [-1.53, -1.87, -2.2]]
+
+	>>> matrix_divided(matrix, 2.3)
+	[[0.43, 0.87, 1.3], [1.74, 2.17, 2.61]]
+
+	>>> matrix_divided(matrix, float('inf'))
+	[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+
+	>>> matrix_divided(matrix, float('nan'))
+	[[nan, nan, nan], [nan, nan, nan]]
+
+::The function will raise a TypeError if a non-int or non-float is passed as arguments for either ``matrix`` or ``div``::
+
+Example:
+	>>> matrix_divided(matrix, 'g')
+	Traceback (most recent call last):
+		...
+	TypeError: div must be a number
+
+	>>> matrix_divided(None, 8)
+	Traceback (most recent call last):
+		...
+	TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Each row of the ``matrix`` must be of the same size else a TypeError is raised
+	>>> matrix_divided([[8, 9], [7]], 8)
+	Traceback (most recent call last):
+		...
+	TypeError: Each row of the matrix must have the same size
+
+If both arguments passed are of incorrect type, TypeError is raised for ``div`` only
+
+Example:
+	>>> matrix_divided('d', 'd')
+	Traceback (most recent call last):
+		...
+	TypeError: div must be a number
+
+if number of arguments is not equal to 2
+	>>> matrix_divided([8, 9], [7], 0)
+	Traceback (most recent call last):
+		...
+	TypeError: matrix_divided() takes 2 positional arguments but 3 were given
+
+	>>> matrix_divided([[8, 9], [7]])
+	Traceback (most recent call last):
+		...
+	TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+::ZeroDivisionError is raised if 0 is passed for div::
+
+Example:
+	>>> matrix_divided(matrix, 0)
+	Traceback (most recent call last):
+		...
+	ZeroDivisionError: division by zero
