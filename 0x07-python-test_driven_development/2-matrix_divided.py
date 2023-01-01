@@ -16,10 +16,10 @@ def matrix_divided(matrix, div):
     try:
         new = [[round(num / div, 2) for num in row] for row in matrix]
     except TypeError:
-        raise TypeError('matrix must be a matrix (list of lists) of inte
-                        gers/floats')
+        raise TypeError('matrix must be a matrix (list of lists) of \
+integers/floats')
     for i in range(len(matrix)):
-        if(len(matrix[i]) != len(matrix[0])):
+        if (len(matrix[i]) != len(matrix[0])):
             raise TypeError('Each row of the matrix must have the same size')
     return new
 # return [(list(map(lambda num: round(num / div, 2), row))) for row in matrix]
