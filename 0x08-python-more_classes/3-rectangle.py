@@ -21,6 +21,7 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
+        """creates a new string object from given object"""
         rect = ''
         for col in range(self.__height):
             for row in range(self.__width):
