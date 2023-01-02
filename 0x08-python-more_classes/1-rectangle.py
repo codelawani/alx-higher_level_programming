@@ -1,5 +1,10 @@
 #!/usr/bin/python3
+"""Defines a rectangle"""
+
+
 class Rectangle:
+    """Creates a rectangle with height and width attributes"""
+
     def __init__(self, width=0, height=0) -> None:
         self.width = width
         self.height = height
