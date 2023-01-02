@@ -20,12 +20,13 @@ class Rectangle:
             return 0
         return 2 * (self.__width + self.__height)
 
-    def __str__(self) -> str:
+    def __str__(self):
         rect = ''
-        for row in range(self.__height):
+        for col in range(self.__height):
             for row in range(self.__width):
                 rect += '#'
-            rect += '\n'
+            if col != self.__height - 1:
+                rect += '\n'
         return rect
 
     @property
