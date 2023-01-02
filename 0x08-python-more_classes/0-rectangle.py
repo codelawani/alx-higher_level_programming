@@ -3,5 +3,5 @@
 
 
 class Rectangle:
-	"""Does nothing"""
-	pass
+    """Does nothing"""
+    pass
