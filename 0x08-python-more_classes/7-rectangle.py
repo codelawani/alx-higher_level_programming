@@ -13,6 +13,7 @@ class Rectangle:
         self.width = width
         self.height = height
         type(self).number_of_instances += 1
+        type(self).print_symbol = '#'
 
     def area(self):
         """gets area of rectangle object"""
@@ -29,7 +30,7 @@ class Rectangle:
         rect = ''
         for col in range(self.__height):
             for row in range(self.__width):
-                rect += type(self).print_symbol
+                rect += str(self.print_symbol)
             if col != self.__height - 1:
                 rect += '\n'
         return rect
