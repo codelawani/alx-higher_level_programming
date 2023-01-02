@@ -25,7 +25,7 @@ class Rectangle:
         for row in range(self.__height):
             for row in range(self.__width):
                 rect += '#'
-            rect +='\n'
+            rect += '\n'
         return rect
 
     @property
