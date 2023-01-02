@@ -13,7 +13,6 @@ class Rectangle:
         self.width = width
         self.height = height
         type(self).number_of_instances += 1
-        type(self).print_symbol = '#'
 
     def area(self):
         """gets area of rectangle object"""
