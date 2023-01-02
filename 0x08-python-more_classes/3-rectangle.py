@@ -23,6 +23,8 @@ class Rectangle:
     def __str__(self):
         """creates a new string object from given object"""
         rect = ''
+        if self.__height == 0 or self.__width == 0:
+            return rect
         for col in range(self.__height):
             for row in range(self.__width):
                 rect += '#'
