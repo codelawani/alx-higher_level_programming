@@ -53,15 +53,18 @@ class Square:
             raise TypeError('position must be a tuple of 2 positive integers')
         elif not all(isinstance(x, int) for x in value):
             raise TypeError('position must be a tuple of 2 positive integers')
+        elif not all(x >= 0 for x in value):
+            raise TypeError('position must be a tuple of 2 positive integers')
+
         self.__position = value
 
     def my_print(self):
         """Prints in stdout the square with character #"""
-        for y in range(self.__position[1]):
-            print()
         if self.__size == 0:
             print()
             return
+        for y in range(self.__position[1]):
+            print()
         for i in range(self.__size):
             for x in range(self.__position[0]):
                 print(' ', end='')
