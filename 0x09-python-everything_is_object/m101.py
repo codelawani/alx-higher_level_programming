@@ -3,6 +3,7 @@ LockedClass = __import__('101-locked_class').LockedClass
 
 lc = LockedClass()
 lc.first_name = "John"
+print(lc.first_name)
 try:
     lc.last_name = "Snow"
 except Exception as e:
