@@ -7,4 +7,4 @@ def read_file(filename=""):
     Args:
         filename (str): file to be read"""
     with open(filename) as f:
-        print(f.read().strip())
+        print(f.read(), end='')
