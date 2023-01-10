@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Define a append write file function"""
+"""Define a json_string converter"""
 import json
 
 
