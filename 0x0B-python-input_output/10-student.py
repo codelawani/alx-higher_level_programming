@@ -16,9 +16,12 @@ class Student:
         result = self.__dict__
         if isinstance(attrs, list) and all(isinstance(x, str) for x in attrs):
             values = []
+            keys = []
             for key in attrs:
                 if key not in self.__dict__.keys():
                     continue
+                else:
+                    keys.append(key)
                 values.append(self.__dict__[key])
-            result = dict(zip(attrs, values))
+            result = dict(zip(keys, values))
         return result
