@@ -1,10 +1,13 @@
 #!/usr/bin/python3
+"""rectangle"""
 from models.base import Base
-"""Defines a rectangle class"""
 
 
 class Rectangle(Base):
+    """Defines a rectangle class"""
+
     def __init__(self, width, height, x=0, y=0, id=None):
+        """Initialises Rectangle class"""
         super().__init__(id)
         self.width = width
         self.height = height
@@ -13,10 +16,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        """gets value of width"""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Sets value of width"""
         if not isinstance(value, int):
             raise TypeError('width must be an integer')
         if value <= 0:
@@ -25,10 +30,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        """gets value of height"""
         return self.__height
 
     @height.setter
     def height(self, value):
+        """Sets value of height"""
         if not isinstance(value, int):
             raise TypeError('height must be an integer')
         if value <= 0:
@@ -37,10 +44,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
+        """gets value of x"""
         return self.__x
 
     @x.setter
     def x(self, value):
+        """Sets value of x"""
         if not isinstance(value, int):
             raise TypeError('x must be an integer')
         if value < 0:
@@ -49,14 +58,28 @@ class Rectangle(Base):
 
     @property
     def y(self):
+        """gets value of y"""
         return self.__y
 
     @y.setter
     def y(self, value):
+        """Sets value of y"""
         if not isinstance(value, int):
             raise TypeError('y must be an integer')
         if value < 0:
             raise ValueError('y must be >= 0')
         self.__y = value
 
-    def area
+    def area(self):
+        """Gets Rectangle area"""
+        return self.__width * self.__height
+
+    def display(self):
+        """prints in stdout the Rectangle instance with the character #"""
+        for _ in range(self.__height):
+            print(''.join(['#' for _ in range(self.__width)]))
+
+    def __str__(self):
+        """Prints Rectangle object"""
+        print(
+            f"[Rectangle] ({self.__id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}")
