@@ -21,3 +21,10 @@ class Base:
             return json.dumps([dictionary for dictionary in list_dictionaries])
         else:
             return '"[]"'
+
+    def from_json_string(json_string):
+        """returns the list of the JSON string representation json_string"""
+        return (json.loads(json_string))
+
+    def create(cls, **dictionary):
+        """returns an instance with all attributes already set"""
