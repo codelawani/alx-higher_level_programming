@@ -4,16 +4,21 @@ import unittest
 
 
 class TestBase(unittest.TestCase):
+    def setUp(self) -> None:
+        return super().setUp()
+
+    def tearDown(self) -> None:
+        return super().tearDown()
+
+    def test_init_without_id(self):
+        b1 = Base()
+        self.assertEqual(b1.id, 2)
+        b2 = Base()
+        self.assertEqual(b2.id, 3)
 
     def test_init_with_id(self):
         b = Base(3)
         self.assertEqual(b.id, 3)
-
-    def test_init_without_id(self):
-        b1 = create_Base()
-        self.assertEqual(b1.id, 1)
-        b2 = create_Base()
-        self.assertEqual(b2.id, 2)
 
     def test_init_negative_id(self):
         b = Base(-2)
