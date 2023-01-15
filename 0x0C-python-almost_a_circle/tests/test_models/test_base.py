@@ -83,3 +83,17 @@ class TestFromJsonString(unittest.TestCase):
         self.assertEqual(Base.from_json_string(json_input), expected_output)
         """ with self.assertRaises(TypeError):
             Base.from_json_string(json_input) """
+
+
+class TestCreate(unittest.TestCase):
+    def test_valid_input(self):
+        r1 = Rectangle(4, 6, 1, 2, 1)
+        r1_dictionary = r1.to_dictionary()
+        newInstance = Rectangle.create(**r1_dictionary)
+        assert newInstance.width == 4
+        assert newInstance.height == 6
+        assert newInstance.x == 1
+        assert newInstance.y == 2
+        assert newInstance.id == 1
+        self.assertIsNot(r1, newInstance)
+        self.assertNotEqual(r1, newInstance)
