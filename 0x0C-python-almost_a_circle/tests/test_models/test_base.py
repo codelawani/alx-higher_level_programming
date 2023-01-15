@@ -3,6 +3,7 @@ from models.base import Base
 from models.rectangle import Rectangle
 import json
 import unittest
+import os
 
 
 class TestBase(unittest.TestCase):
@@ -97,3 +98,12 @@ class TestCreate(unittest.TestCase):
         assert newInstance.id == 1
         self.assertIsNot(r1, newInstance)
         self.assertNotEqual(r1, newInstance)
+
+
+class SaveToFile(unittest.TestCase):
+    def test_valid_input(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+        filename = f"Rectangle.json"
+        self.assertTrue(os.path.isfile(filename))
