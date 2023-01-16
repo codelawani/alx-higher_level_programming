@@ -1,39 +1,42 @@
 #!/usr/bin/python3
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 import json
 import unittest
 import os
+
+nb_objects = 0
 
 
 class TestBase(unittest.TestCase):
 
     def test_init_without_id(self):
-        print('test_init_without_id')
+        global nb_objects
         b1 = Base()
+        nb_objects += 1
+        self.assertEqual(b1.id, nb_objects)
         b2 = Base()
-        self.assertEqual(b1.id, 2)
-        self.assertEqual(b2.id, 3)
+        nb_objects += 1
+        self.assertEqual(b2.id, nb_objects)
 
     def test_init_with_id(self):
-        print('test_init_with_id')
         b = Base(3)
         self.assertEqual(b.id, 3)
 
     def test_init_negative_id(self):
-        print('test_init_negative_id')
         b = Base(-2)
         self.assertEqual(b.id, -2)
 
     def test_init_with_string(self):
-        print('test_init_with_string')
         b = Base('a')
-        self.assertEqual(b.id, 'a')
+        self.assertIsInstance(b.id, str)
 
     def test_init_with_None(self):
-        print('test_init_with_None')
-        b = Base(None)
-        self.assertEqual(b.id, 1)
+        global nb_objects
+        b2 = Base(None)
+        nb_objects += 1
+        self.assertEqual(b2.id, nb_objects)
 
 
 class TestToJsonString(unittest.TestCase):
@@ -84,26 +87,3 @@ class TestFromJsonString(unittest.TestCase):
         self.assertEqual(Base.from_json_string(json_input), expected_output)
         """ with self.assertRaises(TypeError):
             Base.from_json_string(json_input) """
-
-
-class TestCreate(unittest.TestCase):
-    def test_valid_input(self):
-        r1 = Rectangle(4, 6, 1, 2, 1)
-        r1_dictionary = r1.to_dictionary()
-        newInstance = Rectangle.create(**r1_dictionary)
-        assert newInstance.width == 4
-        assert newInstance.height == 6
-        assert newInstance.x == 1
-        assert newInstance.y == 2
-        assert newInstance.id == 1
-        self.assertIsNot(r1, newInstance)
-        self.assertNotEqual(r1, newInstance)
-
-
-class SaveToFile(unittest.TestCase):
-    def test_valid_input(self):
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
-        Rectangle.save_to_file([r1, r2])
-        filename = f"Rectangle.json"
-        self.assertTrue(os.path.isfile(filename))

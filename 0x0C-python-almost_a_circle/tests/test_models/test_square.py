@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-import unittest
 from models.rectangle import Rectangle
 from models.square import Square
+import json
+import unittest
+import os
 
 
 class TestSquare(unittest.TestCase):
@@ -62,3 +64,23 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s2.y, 1)
         self.assertIsNot(s1, s2)
         self.assertNotEqual(s1, s2)
+
+
+class TestSaveToFile(unittest.TestCase):
+    def test_empty_input(self):
+        Square.save_to_file([])
+        filename = f"Square.json"
+        self.assertTrue(os.path.isfile(filename))
+        with open(filename, 'r') as f:
+            json_str = f.read()
+        self.assertEqual(json_str, '[]')
+        os.remove(filename)
+
+    def test_none_input(self):
+        Square.save_to_file(None)
+        filename = f"Square.json"
+        self.assertTrue(os.path.isfile(filename))
+        with open(filename, 'r') as f:
+            json_str = f.read()
+        self.assertEqual(json_str, '[]')
+        os.remove(filename)

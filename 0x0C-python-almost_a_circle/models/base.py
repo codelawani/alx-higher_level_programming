@@ -32,6 +32,9 @@ class Base:
             json_str = cls.to_json_string(list_of_dicts)
             with open(filename, 'w') as f:
                 f.write(json_str)
+        else:
+            with open(filename, 'w') as f:
+                f.write('[]')
 
     @staticmethod
     def from_json_string(json_string):
