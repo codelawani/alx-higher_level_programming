@@ -79,8 +79,8 @@ class Rectangle(Base):
         for _ in range(self.y):
             print()
         for _ in range(self.height):
-            print(''.join([' ' for _ in range(self.x)] +
-                  ['#' for _ in range(self.width)]))
+            print(''.join([' ' * self.x] +
+                  ['#' * self.width]))
 
     def __str__(self):
         """Prints Rectangle object"""
@@ -90,17 +90,12 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """update class attributes"""
-        argc = len(args)
-        if args:
-            self.id = args[0]
-            if argc > 1:
-                self.width = args[1]
-            if argc > 2:
-                self.height = args[2]
-            if argc > 3:
-                self.x = args[3]
-            if argc > 4:
-                self.y = args[4]
+        attributes = ["id", "width", "height", "x", "y"]
+        if args and len(args):
+            i = 0
+            for arg in args:
+                setattr(self, attributes[i], arg)
+                i += 1
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
