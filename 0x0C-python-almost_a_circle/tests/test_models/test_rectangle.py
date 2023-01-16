@@ -41,7 +41,7 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(r1.__str__(), '[Rectangle] (12) 2/1 - 4/6')
         r2 = Rectangle(5, 5, 1)
-        self.assertEqual(r2.__str__(), '[Rectangle] (1) 1/0 - 5/5')
+        self.assertEqual(r2.__str__(), f'[Rectangle] ({r2.id}) 1/0 - 5/5')
 
     def test_update(self):
         r1 = Rectangle(10, 10, 10, 10)
@@ -114,14 +114,21 @@ class TestCreate(unittest.TestCase):
         self.assertNotEqual(r1, newInstance)
 
 
-""" class TestLoadFromFile(unittest.TestCase):
+class TestLoadFromFile(unittest.TestCase):
     def test_valid_input(self):
         r1 = Rectangle(10, 7, 2, 8)
         r2 = Rectangle(2, 4)
-
+        filename = f"{Rectangle.__name__}.json"
         Rectangle.save_to_file([r1, r2])
+        self.assertTrue(os.path.exists(filename))
+        with open(filename) as f:
+            output = json.load(f)
+        expected_output = [r1.to_dictionary(), r2.to_dictionary()]
+        self.assertEqual(output, expected_output)
         try:
-            list_rectangles_output = Rectangle.load_from_file()
-
+            list_rect_output = Rectangle.load_from_file()
+            self.assertEqual(r1.__str__(), list_rect_output[0].__str__())
+            self.assertEqual(r2.__str__(), list_rect_output[1].__str__())
         except (FileNotFoundError):
-            exit """
+            exit
+        os.remove(filename)

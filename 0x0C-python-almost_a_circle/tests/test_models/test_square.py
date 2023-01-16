@@ -94,3 +94,23 @@ class TestSaveToFile(unittest.TestCase):
         output = mock_stdout.getvalue()
         expected_output = "\n\n  ####\n  ####\n  ####\n  ####\n"
         self.assertEqual(output, expected_output)
+
+
+class TestLoadFromFile(unittest.TestCase):
+    def test_valid_input(self):
+        s1 = Square(5, 2, 3)
+        s2 = Square(3)
+        filename = f"{Square.__name__}.json"
+        Square.save_to_file([s1, s2])
+        self.assertTrue(os.path.exists(filename))
+        with open(filename, "r") as f:
+            data = json.load(f)
+        expected_data = [s1.to_dictionary(), s2.to_dictionary()]
+        self.assertEqual(data, expected_data)
+        try:
+            list_squ_output = Square.load_from_file()
+            self.assertEqual(s1.__str__(), list_squ_output[0].__str__())
+            self.assertEqual(s2.__str__(), list_squ_output[1].__str__())
+        except (FileNotFoundError):
+            exit
+        os.remove(filename)
