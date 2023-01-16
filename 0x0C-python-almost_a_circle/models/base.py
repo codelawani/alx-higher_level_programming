@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""base"""
+""" Defines a base class"""
 
 import json
 
