@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from models.base import Base
 from models.rectangle import Rectangle
 import json
 import unittest
@@ -8,6 +9,10 @@ import unittest.mock
 
 
 class TestRectangle(unittest.TestCase):
+
+    def setUp(self) -> None:
+        Base._Base__nb_objects = 0
+        return super().setUp()
 
     def test_init_with_positive_integers(self):
         r = Rectangle(4, 6, 3, 1, 12)
@@ -41,7 +46,7 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(r1.__str__(), '[Rectangle] (12) 2/1 - 4/6')
         r2 = Rectangle(5, 5, 1)
-        self.assertEqual(r2.__str__(), f'[Rectangle] ({r2.id}) 1/0 - 5/5')
+        self.assertEqual(r2.__str__(), f'[Rectangle] ({1}) 1/0 - 5/5')
 
     def test_update(self):
         r1 = Rectangle(10, 10, 10, 10)

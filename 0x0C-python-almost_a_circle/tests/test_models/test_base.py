@@ -6,19 +6,17 @@ import json
 import unittest
 import os
 
-nb_objects = 0
-
 
 class TestBase(unittest.TestCase):
+    def setUp(self) -> None:
+        Base._Base__nb_objects = 0
+        return super().setUp()
 
     def test_init_without_id(self):
-        global nb_objects
         b1 = Base()
-        nb_objects += 1
-        self.assertEqual(b1.id, nb_objects)
+        self.assertEqual(b1.id, 1)
         b2 = Base()
-        nb_objects += 1
-        self.assertEqual(b2.id, nb_objects)
+        self.assertEqual(b2.id, 2)
 
     def test_init_with_id(self):
         b = Base(3)
@@ -33,10 +31,8 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(b.id, str)
 
     def test_init_with_None(self):
-        global nb_objects
         b2 = Base(None)
-        nb_objects += 1
-        self.assertEqual(b2.id, nb_objects)
+        self.assertEqual(b2.id, 1)
 
 
 class TestToJsonString(unittest.TestCase):
@@ -50,14 +46,14 @@ class TestToJsonString(unittest.TestCase):
     def test_empty_input(self):
         print('test_empty_input')
         list_dictionaries = []
-        expected_output = '"[]"'
+        expected_output = '[]'
         self.assertEqual(Base.to_json_string(
             list_dictionaries), expected_output)
 
     def test_none_input(self):
         print('test_None_input')
         list_dictionaries = None
-        expected_output = '"[]"'
+        expected_output = '[]'
         self.assertEqual(Base.to_json_string(
             list_dictionaries), expected_output)
 
