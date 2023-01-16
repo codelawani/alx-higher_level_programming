@@ -85,7 +85,8 @@ class Rectangle(Base):
     def __str__(self):
         """Prints Rectangle object"""
         return (
-            f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}")
+            f"[{self.__class__.__name__}] ({self.id}) \
+{self.x}/{self.y} - {self.width}/{self.height}")
 
     def update(self, *args, **kwargs):
         """update class attributes"""
@@ -106,4 +107,4 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """Returns the dictionary representation of a Rectangle"""
-        return {'id': self.id, 'width': self.width, 'height': self.height, 'x': self.x, 'y': self.y}
+        return {key: value for key, value in self.__dict__.items()}

@@ -3,6 +3,8 @@ from models.rectangle import Rectangle
 import json
 import unittest
 import os
+import io
+import unittest.mock
 
 
 class TestRectangle(unittest.TestCase):
@@ -32,25 +34,38 @@ class TestRectangle(unittest.TestCase):
     def test_area(self):
         r1 = Rectangle(8, 7, 0, 0, 12)
         self.assertEqual(r1.area(), 56)
+        r2 = Rectangle(3, 2)
+        self.assertEqual(r2.area(), 6)
 
     def test_str(self):
         r1 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(r1.__str__(), '[Rectangle] (12) 2/1 - 4/6')
+        r2 = Rectangle(5, 5, 1)
+        self.assertEqual(r2.__str__(), '[Rectangle] (1) 1/0 - 5/5')
 
     def test_update(self):
         r1 = Rectangle(10, 10, 10, 10)
         r1.update(89, 2, 3, 4, 5)
-        assert r1.id == 89
-        assert r1.width == 2
-        assert r1.height == 3
-        assert r1.x == 4
-        assert r1.y == 5
+        self.assertEqual(r1.id, 89)
+        self.assertEqual(r1.width, 2)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 4)
+        self.assertEqual(r1.y, 5)
+
         r1.update(x=1, height=2, y=3, width=4, id=7)
-        assert r1.id == 7
-        assert r1.width == 4
-        assert r1.height == 2
-        assert r1.x == 1
-        assert r1.y == 3
+        self.assertEqual(r1.id, 7)
+        self.assertEqual(r1.width, 4)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 1)
+        self.assertEqual(r1.y, 3)
+
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_display(self, mock_stdout):
+        r1 = Rectangle(2, 3, 2, 2)
+        r1.display()
+        output = mock_stdout.getvalue()
+        expected_output = "\n\n  ##\n  ##\n  ##\n"
+        self.assertEqual(output, expected_output)
 
 
 class SaveToFile(unittest.TestCase):
@@ -97,3 +112,16 @@ class TestCreate(unittest.TestCase):
         assert newInstance.id == 1
         self.assertIsNot(r1, newInstance)
         self.assertNotEqual(r1, newInstance)
+
+
+""" class TestLoadFromFile(unittest.TestCase):
+    def test_valid_input(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+
+        Rectangle.save_to_file([r1, r2])
+        try:
+            list_rectangles_output = Rectangle.load_from_file()
+
+        except (FileNotFoundError):
+            exit """

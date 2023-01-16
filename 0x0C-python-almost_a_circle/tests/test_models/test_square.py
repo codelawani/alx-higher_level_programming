@@ -3,6 +3,8 @@ from models.rectangle import Rectangle
 from models.square import Square
 import json
 import unittest
+import unittest.mock
+import io
 import os
 
 
@@ -84,3 +86,11 @@ class TestSaveToFile(unittest.TestCase):
             json_str = f.read()
         self.assertEqual(json_str, '[]')
         os.remove(filename)
+
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_display(self, mock_stdout):
+        s1 = Square(4, 2, 2, 5)
+        s1.display()
+        output = mock_stdout.getvalue()
+        expected_output = "\n\n  ####\n  ####\n  ####\n  ####\n"
+        self.assertEqual(output, expected_output)
