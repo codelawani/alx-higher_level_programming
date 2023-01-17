@@ -96,12 +96,12 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(2, 3)
         r1.display()
         output = mock_stdout.getvalue()
-        expected_output = "\n\n  ##\n  ##\n  ##\n"
+        expected_output = "\n\n  ##\n  ##\n  ##\n##\n##\n##\n"
         self.assertEqual(output, expected_output)
         r1 = Rectangle(2, 3, 2)
         r1.display()
         output = mock_stdout.getvalue()
-        expected_output = "\n\n  ##\n  ##\n  ##\n"
+        expected_output = "\n\n  ##\n  ##\n  ##\n##\n##\n##\n  ##\n  ##\n  ##\n"
         self.assertEqual(output, expected_output)
 
 
