@@ -14,7 +14,27 @@ class TestRectangle(unittest.TestCase):
         Base._Base__nb_objects = 0
         return super().setUp()
 
+    def test_with_zero(self):
+        self.assertRaises(ValueError, Rectangle, 0, 0)
+        self.assertRaises(ValueError, Rectangle, 0, 2)
+        self.assertRaises(ValueError, Rectangle, 3, 0)
+
     def test_init_with_positive_integers(self):
+        r = Rectangle(4, 6)
+        self.assertEqual(r.width, 4)
+        self.assertEqual(r.height, 6)
+        self.assertEqual(r.id, 1)
+        r = Rectangle(4, 6, 3)
+        self.assertEqual(r.width, 4)
+        self.assertEqual(r.height, 6)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.id, 2)
+        r = Rectangle(4, 6, 3, 1)
+        self.assertEqual(r.width, 4)
+        self.assertEqual(r.height, 6)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 1)
+        self.assertEqual(r.id, 3)
         r = Rectangle(4, 6, 3, 1, 12)
         self.assertEqual(r.width, 4)
         self.assertEqual(r.height, 6)
@@ -29,8 +49,10 @@ class TestRectangle(unittest.TestCase):
         self.assertRaises(ValueError, Rectangle, 4, 6, 2, -4)
 
     def test_init_with_string(self):
-        with self.assertRaises(TypeError):
-            Rectangle('a', 'b')
+        self.assertRaises(TypeError, Rectangle, "a")
+        self.assertRaises(TypeError, Rectangle, 2, "a")
+        self.assertRaises(TypeError, Rectangle, 2, 2, "a")
+        self.assertRaises(TypeError, Rectangle, 2, 2, 2, "a")
 
     def test_init_with_None(self):
         with self.assertRaises(TypeError):
@@ -67,6 +89,16 @@ class TestRectangle(unittest.TestCase):
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_display(self, mock_stdout):
         r1 = Rectangle(2, 3, 2, 2)
+        r1.display()
+        output = mock_stdout.getvalue()
+        expected_output = "\n\n  ##\n  ##\n  ##\n"
+        self.assertEqual(output, expected_output)
+        r1 = Rectangle(2, 3)
+        r1.display()
+        output = mock_stdout.getvalue()
+        expected_output = "\n\n  ##\n  ##\n  ##\n"
+        self.assertEqual(output, expected_output)
+        r1 = Rectangle(2, 3, 2)
         r1.display()
         output = mock_stdout.getvalue()
         expected_output = "\n\n  ##\n  ##\n  ##\n"

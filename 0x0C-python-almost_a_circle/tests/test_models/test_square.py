@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 import json
@@ -9,11 +10,26 @@ import os
 
 
 class TestSquare(unittest.TestCase):
-    """ def setUp(self) -> None:
-        self.s1 = Rectangle(8, 7, 0, 0, 12)
-        return super().setUp() """
+    def setUp(self) -> None:
+        Base._Base__nb_objects = 0
+        return super().setUp()
+
+    def test_with_zero(self):
+        self.assertRaises(ValueError, Square, 0)
 
     def test_init_with_positive_integers(self):
+        s = Square(4)
+        self.assertEqual(s.size, 4)
+        self.assertEqual(s.id, 1)
+        s = Square(4, 6)
+        self.assertEqual(s.size, 4)
+        self.assertEqual(s.x, 6)
+        self.assertEqual(s.id, 2)
+        s = Square(4, 6, 3)
+        self.assertEqual(s.size, 4)
+        self.assertEqual(s.x, 6)
+        self.assertEqual(s.y, 3)
+        self.assertEqual(s.id, 3)
         s = Square(4, 6, 3, 12)
         self.assertEqual(s.size, 4)
         self.assertEqual(s.x, 6)
@@ -26,8 +42,9 @@ class TestSquare(unittest.TestCase):
         self.assertRaises(ValueError, Square, 4, 6, -2)
 
     def test_init_with_string(self):
-        with self.assertRaises(TypeError):
-            Square('a')
+        self.assertRaises(TypeError, Square, "a")
+        self.assertRaises(TypeError, Square, 2, "a")
+        self.assertRaises(TypeError, Square, 2, 2, "a")
 
     def test_init_with_None(self):
         with self.assertRaises(TypeError):
