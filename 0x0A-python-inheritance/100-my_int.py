@@ -7,16 +7,12 @@ class MyInt(int):
 
     def __init__(self, value):
         """Initialise class"""
-        self.num = value
+        self.value = value
 
     def __eq__(self, x):
             """"overload '==' operator"""
-        if self.num == x:
-            return False
-        return True
+        return self.value != x
 
     def __ne__(self, x):
         """ooverload '!=' operator"""
-        if self.num != x:
-            return False
-        return True
+        return self.value == x
