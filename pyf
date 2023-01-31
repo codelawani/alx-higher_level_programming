@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#A script that creates a file and changes the mode
+
+if [ $# -lt 1 ]
+	then
+		echo "Shey you dey whine me ni?"
+		echo "Provide at least one file name mumu!!!"
+		exit 1
+fi
+
+for file in "$@"; do
+	if [ -e "$file" ]
+	then
+		echo "Adding content to existing $file"
+		echo "#!/usr/bin/python3" >> "$file"
+		echo '"""This module"""' >> "$file"
+	else
+		echo "Creating New Files"
+		touch "$@"
+		chmod u+x "$@"
+		echo "Files created successfully with mode u+x"
+		echo "Adding content to new $file"
+		echo "#!/usr/bin/python3" >> "$file"
+		echo '"""This module"""' >> "$file"
+	fi
+done
+
+echo "Contents added successfully"
+
+# change code to vi/emacs if u use vi/emacs
+# as in vi $file
+code "$file"
+
