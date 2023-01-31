@@ -10,7 +10,7 @@ class MyInt(int):
         self.value = value
 
     def __eq__(self, x):
-            """"overload '==' operator"""
+        """"overload '==' operator"""
         return self.value != x
 
     def __ne__(self, x):
