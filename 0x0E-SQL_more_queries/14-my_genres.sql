@@ -7,4 +7,4 @@ SELECT tg.name
 		INNER JOIN tv_genres AS tg
 			ON tg.id = tsg.genre_id
 	WHERE ts.title = "Dexter"
-	ORDER BY ts.title;
+	ORDER BY ts.title ASC;
