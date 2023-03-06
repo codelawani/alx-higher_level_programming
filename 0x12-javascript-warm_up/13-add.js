@@ -1,2 +1,4 @@
 #!/usr/bin/node
-const av = process.argv;
+exports.add = function (a, b) {
+  return a + b;
+};
