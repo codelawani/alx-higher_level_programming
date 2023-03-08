@@ -1,2 +1,4 @@
 #!/usr/bin/node
-const av = process.argv;
+exports.addMeMaybe = (number, theFunction) => {
+  theFunction(++number);
+};
