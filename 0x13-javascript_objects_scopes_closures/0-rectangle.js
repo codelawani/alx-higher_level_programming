@@ -1,2 +1,2 @@
 #!/usr/bin/node
-const av = process.argv;
+module.exports = class Rectangle { };

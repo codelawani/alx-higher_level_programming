@@ -1,5 +1,5 @@
 #!/usr/bin/node
-let num = process.argv.slice(2).sort((a, b) => b - a)[1];
+const num = process.argv.slice(2).sort((a, b) => b - a)[1];
 // second largest is the number at index 1 in the array
 if (num) {
   console.log(num);
