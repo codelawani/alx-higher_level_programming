@@ -9,7 +9,7 @@ This script should take 3 arguments:
 mysql username, mysql password and database name
 """
 
-db = MySQLdb.connect("localhost", *av[1:])
+db = MySQLdb.connect("localhost", *av[1:], 3306)
 cursor = db.cursor()
 cursor.execute("SELECT * FROM states ORDER BY states.id")
 rows = cursor.fetchall()
