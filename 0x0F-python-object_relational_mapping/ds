@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+db="$1"
+export ds="root Bonaik1507? $db"
+echo "$ds"
