@@ -14,8 +14,8 @@ if __name__ == '__main__':
     st_name = av[4]
     db = MySQLdb.connect("localhost", *av[1:4], 3306)
     cursor = db.cursor()
-    query = "SELECT * FROM states WHERE name LIKE\
-            '%s' ORDER BY states.id" % (st_name,)
+    query = f"SELECT * FROM states WHERE name LIKE\
+'{st_name}' ORDER BY states.id"
     cursor.execute(query)
     rows = cursor.fetchall()
     for row in rows:
