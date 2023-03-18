@@ -9,7 +9,9 @@ mysql username, mysql password and database name
 from sys import argv as av
 import MySQLdb
 
-if __name__ == '__main__':
+
+def main():
+    """Driver code"""
     db = MySQLdb.connect("localhost", *av[1:], 3306)
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY states.id")
@@ -19,3 +21,6 @@ if __name__ == '__main__':
     cursor.close()
     db.close()
 
+
+if __name__ == '__main__':
+    main()
