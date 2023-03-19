@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""This script"""
+"""This script lists all State objects that contain the letter a from the
+database hbtn_0e_6_usa"""
 from model_state import State, Base
 from sqlalchemy import (create_engine)
 from sys import argv
