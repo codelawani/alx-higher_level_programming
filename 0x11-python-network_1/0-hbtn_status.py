@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This script fetches https://intranet.hbtn.io/status"""
 
-from urllib import request
+import urllib.request as request
 if __name__ == "__main__":
     with request.urlopen('https://intranet.hbtn.io/status') as response:
         html = response.read()
