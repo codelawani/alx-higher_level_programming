@@ -3,9 +3,9 @@
     using the urllib package"""
 
 if __name__ == "__main__":
-    import urllib.request as request
+    import urllib.request
 
-    with request.urlopen('https://intranet.hbtn.io/status') as response:
+    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
         html = response.read()
         print("Body response:")
         print("\t- type: {}".format(type(html)))
