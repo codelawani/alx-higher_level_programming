@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This script """
+"""This script fetches a header from https://intranet.hbtn.io/status"""
 from urllib import request
 
 if __name__ == "__main__":
