@@ -5,8 +5,7 @@
 if __name__ == '__main__':
     from requests import get
     from sys import argv
-    REPO = argv[1]
-    OWNER = argv[2]
+    REPO, OWNER = argv[1:3]
     url = f'https://api.github.com/repos/{OWNER}/{REPO}/commits'
     resp = get(url)
 
