@@ -1,20 +1,26 @@
 #!/usr/bin/python3
-"""This script"""
+"""This script finds a peak in a list of unsorted integers."""
 
 
 def find_peak(list_of_integers):
     """finds peak"""
     listints = list_of_integers
-    mid = len(listints) // 2
-    # check if there's a list or left or right ints
-    if not listints or not listints[:mid] or not listints[mid + 1:]:
+    low = 0
+    high = len(listints) - 1
+    if high < 0:
         return None
-    # check possible peak
-    if listints[mid] >= listints[mid + 1] and listints[mid] >= listints[mid - 1]:
-        return listints[mid]
-    # check left
-    peak = find_peak(listints[:mid + 1])
-    # check right
-    if not peak:
-        peak = find_peak(listints[mid:])
-    return peak
+    for i in range(low, high):
+        mid = low + (high - low) // 2
+        if (listints[mid] > listints[mid - 1]) and (listints[mid] > listints[mid + 1]):
+            return listints[mid]
+        elif listints[low] > listints[low + 1] and not listints[:low]:
+            return listints[low]
+        if listints[high] > listints[high - 1] and not listints[high + 1:]:
+            return listints[high]
+        elif listints[mid] > listints[mid + 1]:
+            low = mid
+        elif listints[mid] > listints[mid - 1]:
+            high = mid
+        else:
+            high = mid
+    return listints[i]
