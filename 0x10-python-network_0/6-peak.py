@@ -18,8 +18,6 @@ def find_peak(list_of_integers):
             return listints[high]
         elif listints[mid] > listints[mid + 1]:
             low = mid
-        elif listints[mid] > listints[mid - 1]:
-            high = mid
         else:
             high = mid
     return listints[i]
