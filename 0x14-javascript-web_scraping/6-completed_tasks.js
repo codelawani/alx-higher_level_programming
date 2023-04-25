@@ -7,12 +7,12 @@ request(url, function (error, response, body) {
   } else {
     const completed = {};
     const tasks = JSON.parse(body);
-    for (const i in tasks) {
-      if (tasks[i].completed === true) {
-        if (completed[tasks[i].userId]) {
-          completed[tasks[i].userId] += 1;
+    for (const task of tasks) {
+      if (task.completed === true) {
+        if (completed[task.userId]) {
+          completed[task.userId] += 1;
         } else {
-          completed[tasks[i].userId] = 1;
+          completed[task.userId] = 1;
         }
       }
     }
